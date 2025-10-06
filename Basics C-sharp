@@ -1,0 +1,216 @@
+🔹 1. DataTypes in C#
+
+👉 Data type batata hai ki variable kis type ka data store karega aur kitna memory lega.
+C# strongly typed hai → matlab tumhe type declare karna hi hoga.
+
+Categories of Data Types:
+
+1. Value Types (Stack Memory)
+	• Data directly store hota hai.
+	• Fast hote hain.
+	• Example: int, char, float, struct, enum, bool
+
+int num = 100;
+bool isAlive = true;
+char grade = 'A';
+⚡ Special Value Types
+	• enum (fixed set of constants)
+	• struct (lightweight object, value type)
+
+2. Reference Types (Heap Memory)
+	• Actual data heap me hota hai, variable sirf uska address store karta hai.
+	• Example: class, object, string, arrays, interface
+
+string name = "Suryansh";
+int[] marks = {90, 85, 78};
+
+3. Pointer Types (unsafe mode)
+👉 Direct memory address ke saath kaam karte hain. Rarely use hote hain.
+
+⚡ Interview Q/A
+	• Q: Value type vs Reference type difference?
+A: Value type → Stack me store hota hai, copy independent hote hain.
+Reference type → Heap me store hota hai, copy reference hota hai.
+
+🔹 2. Type Conversion
+👉 Conversion ka matlab ek data type ko dusre me convert karna.
+
+Types of Conversion:
+
+	1. Implicit Conversion (Type Casting by CLR)
+		○ Safe conversion (chhote se bade type).
+
+int a = 10;
+double b = a;   // int → double
+
+	2. Explicit Conversion (Type Casting manually)
+		○ Jab data loss possible ho.
+
+double d = 9.7;
+int i = (int)d;   // i = 9
+	3. Helper Methods
+		○ Parse() → converts string to primitive (null par error)
+		○ Convert class → safe conversion (null = 0 banata hai)
+
+string s = "123";
+int x = int.Parse(s);             // string → int
+int y = Convert.ToInt32("123");   // safe conversion
+
+
+⚡ Interview Q/A
+	• Q: Parse() vs Convert?
+A: Parse null handle nahi karta (exception aayegi), Convert null ko default value de deta hai.
+
+🔹 3. Constants
+👉 Constant wo variable jiska value ek bar assign hone ke baad change nahi hota.
+
+const double PI = 3.14;
+readonly int myVar; // runtime par assign kar sakte ho
+
+⚡ Interview Q/A
+	• Q: const aur readonly me difference?
+A:
+		○ const compile-time fixed hota hai.
+		○ readonly runtime me constructor ke andar value assign ho sakta hai.
+
+🔹 4. Date and Time
+👉 C# me DateTime struct use hota hai.
+
+DateTime now = DateTime.Now;       // current time
+Console.WriteLine(now.ToString("dd-MM-yyyy"));
+Console.WriteLine(now.ToString("HH:mm:ss"));
+Specifiers
+	• dd → day
+	• MM → month
+	• yyyy → year
+	• HH → 24 hr
+	• hh → 12 hr
+
+Console.WriteLine(DateTime.Now.ToString("dddd, MMMM dd yyyy"));
+⚡ Interview Q/A
+	• Q: Now vs UtcNow?
+A: Now → local machine time, UtcNow → GMT standard time.
+
+🔹 5. Statements
+
+👉 Program ke basic building blocks.
+	• Declaration Statement → int x;
+	• Expression Statement → x = 10;
+	• Control Flow Statement → loops, if-else, switch
+	• Jump Statement → break, continue, return
+
+🔹 6. Operators
+
+👉 Special symbols jo calculations perform karte.
+
+Types:
+
+	1. Arithmetic → +, -, *, /, %
+	2. Relational → >, <, ==, !=, >=, <=
+	3. Logical → &&, ||, !
+	4. Assignment → =, +=, -=, *=
+	5. Unary → ++, --
+	6. Conditional → ? :
+	7. Bitwise → &, |, ^, ~, <<, >>
+
+int a = 5, b = 2;
+Console.WriteLine(a+b); // 7
+Console.WriteLine(a>b); // true
+⚡ Interview Q/A
+	• Q: == vs Equals()?
+A: == operator value compare karta hai, Equals() reference content check karta hai.
+
+🔹 7. Decision Making Statements
+
+👉 Program ko condition ke basis pe control karna.
+
+if
+
+if (marks >= 40) Console.WriteLine("Pass");
+if-else
+
+if (age >= 18) Console.WriteLine("Adult");
+else Console.WriteLine("Minor");
+nested if
+
+if (age > 0) {
+   if (age >= 18) Console.WriteLine("Adult");
+   else Console.WriteLine("Minor");
+}
+switch
+
+switch(day) {
+    case 1: Console.WriteLine("Mon"); break;
+    case 2: Console.WriteLine("Tue"); break;
+    default: Console.WriteLine("Invalid");
+}
+
+⚡ Interview Q/A
+	• Q: if-else vs switch difference?
+A: if-else → range ya condition ke liye, switch → fixed discrete values ke liye fast.
+
+🔹 8. Loops
+👉 Repetition ke liye use hote hain.
+
+for loop (fixed iteration)
+
+for (int i=1; i<=5; i++)
+   Console.WriteLine(i);
+while loop (condition based, unknown iterations)
+
+int i=1;
+while(i<=5){
+   Console.WriteLine(i);
+   i++;
+}
+do-while loop (at least ek bar execute hoga)
+
+int i=1;
+do {
+   Console.WriteLine(i);
+   i++;
+} while(i<=5);
+foreach loop (collection ke liye)
+
+int[] arr = {1,2,3};
+foreach(int n in arr)
+   Console.WriteLine(n);
+
+⚡ Interview Q/A
+	• Q: foreach vs for loop?
+A: foreach read-only hai (modify nahi kar sakte), for loop me full control hota hai.
+
+🔹 9. Jump Statements
+
+👉 Program flow ko control karte hain.
+
+	1. Break
+
+	• Loop/switch se turant bahar nikalne ke liye.
+
+for(int i=1;i<=5;i++){
+    if(i==3) break;
+    Console.WriteLine(i);
+}
+continue
+	1st. Current iteration skip, next par jump.
+
+for(int i=1;i<=5;i++){
+    if(i==3) continue;
+    Console.WriteLine(i);
+}
+goto
+	• Label par jump karta hai (bad practice).
+
+goto label1;
+label1: Console.WriteLine("Jumped");
+return
+	• Method terminate kar deta hai aur value return karta hai.
+
+int sum(int a, int b) {
+   return a+b;
+}
+
+⚡ Interview Q/A
+	• Q: goto use karna sahi hai?
+A: Nahi, kyunki readability aur debugging kharab ho jaati hai.
